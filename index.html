@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Friendly Survey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <form id="surveyForm" action="survey_handler.php" method="POST">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header animate-in">
+            <h1 class="form-title">Eco-Friendly Survey</h1>
+            <p class="form-description">Help us make the world greener by sharing your thoughts</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+        
+        <form id="surveyForm">
+            <div class="questions-grid">
+                <!-- Text Question -->
+                <div class="question-container animate-in" style="animation-delay: 0.1s">
+                    <label class="question-title required" for="name">What's your name?</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Your full name" required>
+                </div>
+                
+                <!-- Email Question -->
+                <div class="question-container animate-in" style="animation-delay: 0.2s">
+                    <label class="question-title required" for="email">What's your email address?</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="your.email@example.com" required>
+                </div>
+                
+                <!-- Radio Question -->
+                <div class="question-container animate-in" style="animation-delay: 0.3s">
+                    <label class="question-title required">How often do you practice eco-friendly habits?</label>
+                    <div class="options-container">
+                        <label class="option-item" for="daily">
+                            <input type="radio" id="daily" name="eco_habits" value="Daily" class="real-input" required>
+                            <span class="custom-radio"></span>
+                            <span>Daily - I'm fully committed</span>
+                        </label>
+                        <label class="option-item" for="weekly">
+                            <input type="radio" id="weekly" name="eco_habits" value="Weekly" class="real-input">
+                            <span class="custom-radio"></span>
+                            <span>Weekly - I make regular efforts</span>
+                        </label>
+                        <label class="option-item" for="monthly">
+                            <input type="radio" id="monthly" name="eco_habits" value="Monthly" class="real-input">
+                            <span class="custom-radio"></span>
+                            <span>Monthly - I try when I can</span>
+                        </label>
+                        <label class="option-item" for="rarely">
+                            <input type="radio" id="rarely" name="eco_habits" value="Rarely" class="real-input">
+                            <span class="custom-radio"></span>
+                            <span>Rarely - but I want to improve</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Checkbox Question -->
+                <div class="question-container animate-in" style="animation-delay: 0.4s">
+                    <label class="question-title">Which green practices do you follow? (Select all that apply)</label>
+                    <div class="options-container">
+                        <label class="option-item" for="practice1">
+                            <input type="checkbox" id="practice1" name="practices" value="Recycling" class="real-input">
+                            <span class="custom-checkbox"></span>
+                            <span>Recycling</span>
+                        </label>
+                        <label class="option-item" for="practice2">
+                            <input type="checkbox" id="practice2" name="practices" value="Composting" class="real-input">
+                            <span class="custom-checkbox"></span>
+                            <span>Composting</span>
+                        </label>
+                        <label class="option-item" for="practice3">
+                            <input type="checkbox" id="practice3" name="practices" value="Public Transport" class="real-input">
+                            <span class="custom-checkbox"></span>
+                            <span>Using public transport</span>
+                        </label>
+                        <label class="option-item" for="practice4">
+                            <input type="checkbox" id="practice4" name="practices" value="Energy Saving" class="real-input">
+                            <span class="custom-checkbox"></span>
+                            <span>Energy saving at home</span>
+                        </label>
+                        <div class="other-option">
+                            <label class="option-item" for="practiceOther" style="min-width: 120px">
+                                <input type="checkbox" id="practiceOther" name="practices" value="OtherSpecify" class="real-input">
+                                <span class="custom-checkbox"></span>
+                                <span>Other:</span>
+                            </label>
+                            <input type="text" id="otherPracticeInput" class="form-control other-input" placeholder="Your eco-friendly practice" disabled>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dropdown Question -->
+                <div class="question-container animate-in" style="animation-delay: 0.5s">
+                    <label class="question-title required" for="sustainability">How important is sustainability to you?</label>
+                    <div class="select-wrapper">
+                        <select id="sustainability" name="sustainability" class="form-control" required>
+                            <option value="" disabled selected>Select your priority level</option>
+                            <option value="Extremely">Extremely important</option>
+                            <option value="Very">Very important</option>
+                            <option value="Moderately">Moderately important</option>
+                            <option value="Slightly">Slightly important</option>
+                            <option value="Not">Not currently important</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Textarea Question -->
+                <div class="question-container animate-in" style="animation-delay: 0.6s">
+                    <label class="question-title" for="ideas">Share your ideas for a greener future</label>
+                    <textarea id="ideas" name="ideas" class="form-control" placeholder="What changes would you like to see in your community or the world?"></textarea>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn animate-in" style="animation-delay: 0.7s">
+                <span>Submit</span>
+            </button>
+            
+            <div class="form-footer animate-in" style="animation-delay: 0.8s">
+                Thank you for helping us grow a greener future!
+            </div>
+        </form>
+    </div>
+
+    <div id="notification" class="notification">
+        <span id="notificationMessage">✓ Thank you for your submission!</span>
+    </div>
+    
+    <script src="/main.js"></script>
+
+    <script>
+        // Initialize animation on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate-in');
+            animatedElements.forEach(element => {
+                element.style.opacity = 1;
+            });
+        });
+        
+        // Form interaction handling
+        const form = document.getElementById('surveyForm');
+        const progressBar = document.getElementById('progressBar');
+        const notification = document.getElementById('notification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        const formInputs = form.querySelectorAll('input, select, textarea');
+        
+        // Update progress bar based on form completion
+        function updateProgress() {
+            const totalFields = formInputs.length;
+            let completedFields = 0;
+            
+            formInputs.forEach(input => {
+                if (input.type === 'radio' || input.type === 'checkbox') {
+                    // For radio groups, check if any in the group is selected
+                    if (input.checked) {
+                        completedFields++;
+                    }
+                } else if (input.value) {
+                    completedFields++;
+                }
+            });
+            
+            // Calculate progress (eliminate duplicated counts for radio/checkbox groups)
+            const progress = Math.min(100, Math.round((completedFields / (totalFields - 4)) * 100));
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        // Initialize progress
+        updateProgress();
+        
+        // Update progress when form inputs change
+        formInputs.forEach(input => {
+            input.addEventListener('change', updateProgress);
+            input.addEventListener('input', updateProgress);
+        });
+        
+        // Custom radio/checkbox styling and interactions
+        document.querySelectorAll('.option-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const input = this.querySelector('.real-input');
+                
+                if (input.type === 'radio') {
+                    // Remove 'selected' class from all radio options in the group
+                    document.querySelectorAll(`input[name="${input.name}"]`).forEach(radio => {
+                        radio.closest('.option-item').classList.remove('selected');
+                    });
+                    
+                    // Add 'selected' class to the clicked option
+                    this.classList.add('selected');
+                } else if (input.type === 'checkbox') {
+                    // Toggle 'selected' class for checkbox options
+                    this.classList.toggle('selected', input.checked);
+                    
+                    // Enable/disable "Other" input field
+                    if (input.id === 'practiceOther') {
+                        document.getElementById('otherPracticeInput').disabled = !input.checked;
+                        if (!input.checked) {
+                            document.getElementById('otherPracticeInput').value = '';
+                        }
+                    }
+                }
+                
+                updateProgress();
+            });
+        });
+        
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show notification
+            notificationMessage.textContent = '✓ Thank you for your submission!';
+            notification.classList.add('show');
+            
+            // Hide notification after delay
+            setTimeout(() => {
+                notification.classList.remove('show');
+                
+                // Optional: Reset form
+                // form.reset();
+                // updateProgress();
+                // Reset selected states
+                // document.querySelectorAll('.option-item').forEach(item => {
+                //     item.classList.remove('selected');
+                // });
+            }, 3000);
+        });
+        
+        // Enable/disable other practice input based on checkbox
+        document.getElementById('practiceOther').addEventListener('change', function() {
+            const otherInput = document.getElementById('otherPracticeInput');
+            otherInput.disabled = !this.checked;
+            if (!this.checked) {
+                otherInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
